@@ -38,8 +38,7 @@ public class Main {
             try {
                 twitter.retweetStatus(status.getId());
                 System.out.println(status.getText());
-
-                // Follow verified accounts:
+                
                 if (!r.isSourceFollowingTarget() && u.isVerified()) {
                     try {
                         twitter.createFriendship(u.getId());
