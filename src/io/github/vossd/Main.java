@@ -12,13 +12,12 @@ public class Main {
     public static void main(String[] args) throws TwitterException, InterruptedException {
 
         Twitter twitter = new TwitterFactory().getSingleton();
-
         final long LEEBOT_ID = twitter.showUser("lee_konitz_bot").getId();
 
+        System.out.println(LocalDateTime.now());
         searchAndRetweet(twitter, LEEBOT_ID);
         followBack(twitter, LEEBOT_ID);
         unfollowNonfollowers(twitter, LEEBOT_ID);
-
         System.out.println("Finished.");
     }
 
@@ -38,7 +37,7 @@ public class Main {
             try {
                 twitter.retweetStatus(status.getId());
                 System.out.println(status.getText());
-                
+
                 if (!r.isSourceFollowingTarget() && u.isVerified()) {
                     try {
                         twitter.createFriendship(u.getId());
